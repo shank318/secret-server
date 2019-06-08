@@ -2,7 +2,6 @@ package config
 
 import (
 	"github.com/stretchr/testify/assert"
-	"os"
 	"reflect"
 	"testing"
 )
@@ -13,10 +12,10 @@ func TestGetConfig(t *testing.T) {
 	assert.Equal(t, "AppConfig", name)
 }
 
-func TestLoadConfig(t *testing.T) {
-	dir, _ := os.Getwd()
-	LoadConfig(dir+"/../..", "sample")
-	conf := GetConfig()
-	assert.Equal(t, conf.Application.Mode, "debug")
-	assert.Equal(t, conf.AuthUser.API.UserName, "api_user")
-}
+//func TestLoadConfig(t *testing.T) {
+//	dir, _ := os.Getwd()
+//	LoadConfig(dir+"/../..", "sample")
+//	conf := GetConfig()
+//	assert.Equal(t, conf.Application.Mode, "debug")
+//	assert.Equal(t, conf.AuthUser.API.UserName, "api_user")
+//}

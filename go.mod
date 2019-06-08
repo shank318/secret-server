@@ -11,6 +11,7 @@ require (
 	github.com/go-openapi/jsonpointer v0.18.0 // indirect
 	github.com/go-openapi/swag v0.18.0 // indirect
 	github.com/go-ozzo/ozzo-validation v3.5.0+incompatible
+	github.com/go-sql-driver/mysql v1.4.1 // indirect
 	github.com/gojektech/heimdall v5.0.2+incompatible
 	github.com/gojektech/valkyrie v0.0.0-20190210220504-8f62c1e7ba45 // indirect
 	github.com/golang/protobuf v1.3.1 // indirect

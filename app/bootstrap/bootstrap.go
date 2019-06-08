@@ -19,6 +19,7 @@ var initializeLogger = logger.InitLogrus
 var initializeDatabase = database.Initialize
 var loadConfig = config.LoadConfig
 var newAppController = controllers.NewAppController
+var newSecretController = controllers.NewSecretController
 var setGinMode = gin.SetMode
 
 // Initialize : initializes all required application components

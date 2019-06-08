@@ -10,14 +10,14 @@ func TestInitialize(t *testing.T) {
 	oldInitializeLogger := initializeLogger
 	oldLoadConfig := loadConfig
 	oldNewAppController := newAppController
-	oldTerminalController := newTerminalController
+	oldSecretController := newSecretController
 	oldSetGinMode := setGinMode
 
 	defer func() { initializeRouter = oldInitializeRouter }()
 	defer func() { initializeLogger = oldInitializeLogger }()
 	defer func() { loadConfig = oldLoadConfig }()
 	defer func() { newAppController = oldNewAppController }()
-	defer func() { newTerminalController = oldTerminalController }()
+	defer func() { newSecretController = oldSecretController }()
 	defer func() { setGinMode = oldSetGinMode }()
 
 	initializeRouterCalled := false
@@ -39,7 +39,7 @@ func TestInitialize(t *testing.T) {
 	newAppController = func() {
 		newAppControllerCalled = true
 	}
-	newTerminalController = func() {
+	newSecretController = func() {
 		newTerminalControllerCalled = true
 	}
 	setGinMode = func(value string) {

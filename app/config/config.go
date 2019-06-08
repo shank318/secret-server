@@ -41,6 +41,7 @@ type DatabaseConfig struct {
 type AppConfig struct {
 	Application application    `toml:"application`
 	Prometheus  prometheus     `toml:"prometheus"`
+	AuthUser    authUser       `toml:"authuser"`
 	Database    DatabaseConfig `toml:"database"`
 }
 
