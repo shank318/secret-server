@@ -1,0 +1,65 @@
+basePath: '{{.BasePath}}'
+definitions:
+  models.Base:
+    properties:
+      error:
+        type: string
+      success:
+        type: boolean
+    type: object
+host: '{{.Host}}'
+info:
+  contact: {}
+  description: '{{.Description}}'
+  license: {}
+  title: '{{.Title}}'
+  version: '{{.Version}}'
+paths:
+  /:
+    get:
+      description: Welcome will return the welcome message as response with status
+        code as 200
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Base'
+            type: object
+      summary: Welcome
+      tags:
+      - System status
+  /ping:
+    get:
+      description: Ping test, return the commit ID and container ID
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Base'
+            type: object
+      summary: Ping test
+      tags:
+      - System status
+  /status:
+    get:
+      description: Status will provide the status of the service we been used in the
+        application
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Base'
+            type: object
+      summary: Get Status
+      tags:
+      - System status
+securityDefinitions:
+  BasicAuth:
+    type: basic
+swagger: "2.0"

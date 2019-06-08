@@ -1,0 +1,6 @@
+.idea
+.vscode
+vendor
+router
+conf/env.dev.toml
+.DS_Store
