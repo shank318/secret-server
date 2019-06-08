@@ -14,7 +14,8 @@
             "get": {
                 "description": "Welcome will return the welcome message as response with status code as 200",
                 "produces": [
-                    "application/json"
+                    "application/json",
+                    "text/xml"
                 ],
                 "tags": [
                     "System status"
@@ -47,6 +48,27 @@
                         "schema": {
                             "type": "object",
                             "$ref": "#/definitions/models.Base"
+                        }
+                    }
+                }
+            }
+        },
+        "/secret": {
+            "post": {
+                "description": "Add a new secret",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "secret"
+                ],
+                "summary": "Add a new secret",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.Secret"
                         }
                     }
                 }
@@ -85,11 +107,29 @@
                     "type": "boolean"
                 }
             }
-        }
-    },
-    "securityDefinitions": {
-        "BasicAuth": {
-            "type": "basic"
+        },
+        "models.Secret": {
+            "type": "object",
+            "properties": {
+                "createdAt": {
+                    "type": "string"
+                },
+                "expiresAt": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "maxViews": {
+                    "type": "integer"
+                },
+                "remainingViews": {
+                    "type": "string"
+                },
+                "secretText": {
+                    "type": "string"
+                }
+            }
         }
     }
 }

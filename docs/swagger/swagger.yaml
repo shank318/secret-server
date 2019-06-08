@@ -7,6 +7,21 @@ definitions:
       success:
         type: boolean
     type: object
+  models.Secret:
+    properties:
+      createdAt:
+        type: string
+      expiresAt:
+        type: string
+      id:
+        type: string
+      maxViews:
+        type: integer
+      remainingViews:
+        type: string
+      secretText:
+        type: string
+    type: object
 host: '{{.Host}}'
 info:
   contact: {}
@@ -21,6 +36,7 @@ paths:
         code as 200
       produces:
       - application/json
+      - text/xml
       responses:
         "200":
           description: OK
@@ -44,6 +60,20 @@ paths:
       summary: Ping test
       tags:
       - System status
+  /secret:
+    post:
+      description: Add a new secret
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Secret'
+            type: object
+      summary: Add a new secret
+      tags:
+      - secret
   /status:
     get:
       description: Status will provide the status of the service we been used in the
@@ -59,7 +89,4 @@ paths:
       summary: Get Status
       tags:
       - System status
-securityDefinitions:
-  BasicAuth:
-    type: basic
 swagger: "2.0"

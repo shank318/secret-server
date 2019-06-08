@@ -3,6 +3,7 @@ package controllers
 import (
 	"github.com/gin-gonic/gin"
 	"net/http"
+	"secret-server/app/models"
 	"secret-server/app/routing/response"
 )
 
@@ -28,9 +29,8 @@ func NewSecretController() {
 // @Produce  json
 // @Router /secret [post]
 func (controller secretController) CreateSecret(ctx *gin.Context) response.Response {
-	responseContent := map[string]interface{}{
-		"Message": "Welcome to Router :)",
-	}
+
+	responseContent := models.SecretResponse{}
 	responseStruct := response.NewResponse(ctx).
 		SetResponse(responseContent).
 		SetError(nil).

@@ -17,7 +17,6 @@ import (
 // - env: default it'll be `dev`. application will be initialized according to this
 // - command: when specified application will initialize in command mode and execute the given command
 //			  router wont be initialized for commands
-// @securityDefinitions.basic BasicAuth
 func main() {
 	basePath := flag.String(constants.BasePath, constants.DefaultBasePath, "Path to valut base path")
 	env := flag.String(constants.Env, constants.Development, "Application env : prod/dev")

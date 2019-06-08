@@ -18,6 +18,11 @@ func SerializeResponse(ctx *gin.Context) {
 // data will be taken form the context value set by controller
 func setResponse(ctx *gin.Context) {
 	responseBody, status := prepareResponse(ctx)
+	ct := ctx.Request.Header.Get("Content-Type")
+	if ct == "text/xml" || ct == "application/xml" {
+		ctx.XML(status, responseBody)
+		return
+	}
 	ctx.JSON(status, responseBody)
 }
 

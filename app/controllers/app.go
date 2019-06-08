@@ -29,12 +29,10 @@ func NewAppController() {
 // @Description Welcome will return the welcome message as response with status code as 200
 // @Tags System status
 // @Success 200 {object} models.Base
-// @Produce  json
+// @Produce  json,xml
 // @Router / [get]
 func (controller appController) Welcome(ctx *gin.Context) response.Response {
-	responseContent := map[string]interface{}{
-		"Message": "Welcome to Router :)",
-	}
+	responseContent := models.SecretResponse{}
 	responseStruct := response.NewResponse(ctx).
 		SetResponse(responseContent).
 		SetError(nil).
