@@ -4,6 +4,8 @@
 // this will be immutable as it always provides the value of the struct
 package config
 
+import "time"
+
 const (
 	// FilePath - relative path to the config directory
 	FilePath = "%s/conf/%s"
@@ -20,12 +22,26 @@ var (
 	config AppConfig
 )
 
+// DatabaseConfig : struct to hold database config
+type DatabaseConfig struct {
+	Dialect               string        `toml:"dialect"`
+	Protocol              string        `toml:"protocol"`
+	Host                  string        `toml:"host"`
+	Port                  int           `toml:"port"`
+	Username              string        `toml:"username"`
+	Password              string        `toml:"password"`
+	SslMode               string        `toml:"sslmode"`
+	Name                  string        `toml:"name"`
+	MaxOpenConnections    int           `toml:"max_open_connections"`
+	MaxIdleConnections    int           `toml:"max_idle_connections"`
+	ConnectionMaxLifetime time.Duration `toml:"conn_max_lifetime"`
+}
+
 // appConfig global configuration struct definition
 type AppConfig struct {
-	Application application `toml:"application`
-	NewRelic    newrelic    `toml:"newrelic"`
-	AuthUser    authUser    `toml:"authuser"`
-	Prometheus  prometheus  `toml:"prometheus"`
+	Application application    `toml:"application`
+	Prometheus  prometheus     `toml:"prometheus"`
+	Database    DatabaseConfig `toml:"database"`
 }
 
 // LoadConfig will load the configuration available in the cnf directory available in basePath

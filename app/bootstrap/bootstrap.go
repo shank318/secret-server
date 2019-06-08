@@ -7,6 +7,7 @@ import (
 	"secret-server/app/config"
 	"secret-server/app/controllers"
 	"secret-server/app/logger"
+	"secret-server/app/providers/database"
 	"secret-server/app/routing/router"
 	"secret-server/docs"
 
@@ -15,6 +16,7 @@ import (
 
 var initializeRouter = router.Initialize
 var initializeLogger = logger.InitLogrus
+var initializeDatabase = database.Initialize
 var loadConfig = config.LoadConfig
 var newAppController = controllers.NewAppController
 var setGinMode = gin.SetMode
@@ -38,6 +40,7 @@ func baseInit(basePath string, env string) {
 // initProviders : Provider initialization is done here
 // There initiated providers will be available across the application
 func initProviders(basePath string) {
+	initializeDatabase()
 	initializeLogger()
 }
 
