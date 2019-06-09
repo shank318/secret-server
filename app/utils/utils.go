@@ -8,9 +8,9 @@ import (
 	"reflect"
 	"regexp"
 	"secret-server/app/constants"
+	"secret-server/app/crerrors"
 	"secret-server/app/logger"
 	"secret-server/app/metric"
-	"secret-server/app/crerrors"
 	"strconv"
 	"strings"
 	"time"
@@ -74,7 +74,9 @@ func TraceExecutionTime(ctx *gin.Context, method string, startTime int64) {
 	logInfo(ctx, method, traceData)
 
 	if Contains(constants.PerformanceMetricsActions, method) {
-		metric.TimeToProcess.Observe(float64(executionTime))
+		defer func() {
+			metric.TimeToProcess.WithLabelValues(method).Observe(float64(executionTime))
+		}()
 	}
 }
 

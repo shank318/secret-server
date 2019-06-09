@@ -9,7 +9,6 @@ import (
 func Instrument() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		handler := c.HandlerName()
-		metric.TotalRequestCount.WithLabelValues(handler).Inc()
 
 		c.Next()
 		status := strconv.Itoa(c.Writer.Status())

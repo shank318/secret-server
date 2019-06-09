@@ -1,9 +1,8 @@
 package middleware
 
 import (
-	"net/http"
-
 	"github.com/gin-gonic/gin"
+	"net/http"
 	"secret-server/app/constants"
 	"secret-server/app/routing/response"
 )
@@ -18,8 +17,9 @@ func SerializeResponse(ctx *gin.Context) {
 // data will be taken form the context value set by controller
 func setResponse(ctx *gin.Context) {
 	responseBody, status := prepareResponse(ctx)
-	ct := ctx.Request.Header.Get("Content-Type")
-	if ct == "text/xml" || ct == "application/xml" {
+	_, ok := responseBody.(map[string]interface{})
+	ct := ctx.Request.Header.Get("accept")
+	if (ct == "text/xml" || ct == "application/xml") && !ok {
 		ctx.XML(status, responseBody)
 		return
 	}

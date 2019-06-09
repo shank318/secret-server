@@ -5,7 +5,7 @@ import (
 )
 
 const (
-	Namespace = "router"
+	Namespace = "secretserver"
 )
 
 var register = prometheus.MustRegister
@@ -14,18 +14,9 @@ var (
 		prometheus.CounterOpts{
 			Namespace: Namespace,
 			Name:      "requests",
-			Help:      "How many HTTP requests processed, partitioned by status code and HTTP method.",
+			Help:      "How many HTTP requests processed, partitioned by api",
 		},
-		[]string{"status", "method", "handler"},
-	)
-
-	TotalRequestCount = prometheus.NewCounterVec(
-		prometheus.CounterOpts{
-			Namespace: Namespace,
-			Name:      "requests_total",
-			Help:      "How many HTTP requests received",
-		},
-		[]string{"handler"},
+		[]string{"api"},
 	)
 
 	ErrorCounter = prometheus.NewCounterVec(
@@ -37,26 +28,18 @@ var (
 		[]string{"error"},
 	)
 
-	ExternalClient = prometheus.NewCounterVec(
-		prometheus.CounterOpts{
-			Namespace: Namespace,
-			Name:      "external_requests_count",
-			Help:      "How many HTTP requests processed by external clients, partitioned by uri",
-		},
-		[]string{"uri", "status"},
-	)
-	TimeToProcess = prometheus.NewHistogram(
+	TimeToProcess = prometheus.NewHistogramVec(
 		prometheus.HistogramOpts{
 			Namespace: Namespace,
-			Name:      "response_time",
+			Name:      "response_time_add_secret",
 			Help:      "Time taken to process request and respond back",
 			Buckets:   prometheus.LinearBuckets(5, 5, 20), // 20 buckets, each 5 wide starting 5
-		})
+		}, []string{"api"})
+
 )
 
 func RegisterPrometheusMetrics() {
 	register(RequestCount)
-	register(TotalRequestCount)
 	register(ErrorCounter)
-	register(ExternalClient)
+	register(TimeToProcess)
 }

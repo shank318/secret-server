@@ -7,18 +7,16 @@ definitions:
       success:
         type: boolean
     type: object
-  models.Secret:
+  models.SecretResponse:
     properties:
       createdAt:
         type: string
       expiresAt:
         type: string
-      id:
+      hash:
         type: string
-      maxViews:
-        type: integer
       remainingViews:
-        type: string
+        type: integer
       secretText:
         type: string
     type: object
@@ -36,7 +34,6 @@ paths:
         code as 200
       produces:
       - application/json
-      - text/xml
       responses:
         "200":
           description: OK
@@ -62,16 +59,58 @@ paths:
       - System status
   /secret:
     post:
+      consumes:
+      - application/x-www-form-urlencoded
       description: Add a new secret
+      parameters:
+      - description: This text will be saved as a secret
+        in: formData
+        name: secret
+        required: true
+        type: string
+      - description: The secret won't be available after the given number of views.
+          It must be greater than 0.
+        in: formData
+        name: expireAfterViews
+        required: true
+        type: integer
+      - description: The secret won't be available after the given time. The value
+          is provided in minutes. 0 means never expires
+        in: formData
+        name: expireAfter
+        required: true
+        type: integer
       produces:
       - application/json
+      - text/xml
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/models.Secret'
+            $ref: '#/definitions/models.SecretResponse'
             type: object
       summary: Add a new secret
+      tags:
+      - secret
+  /secret/{hash}:
+    get:
+      description: Get a secret by ID
+      parameters:
+      - description: Unique hash to identify the secret
+        in: path
+        name: hash
+        required: true
+        type: string
+      produces:
+      - application/json
+      - text/xml
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.SecretResponse'
+            type: object
+      summary: Get a secret by ID
       tags:
       - secret
   /status:

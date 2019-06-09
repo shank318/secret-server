@@ -25,10 +25,10 @@ func SetRequestPayload() gin.HandlerFunc {
 		ctx.Set(constants.Request, traceData)
 
 		input := make(map[string]interface{})
-		collectRequestBody(ctx, input)
-
-		collectQueryParam(ctx, input)
-		collectPathParam(ctx, input)
+		//collectRequestBody(ctx, input)
+		//
+		//collectQueryParam(ctx, input)
+		//collectPathParam(ctx, input)
 
 		if ctx != nil && !utils.Contains([]string{"/", "/status"}, ctx.Request.URL.Path) {
 			logger.Info(ctx, logger.TraceAppRequestData, input)

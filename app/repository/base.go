@@ -1,8 +1,8 @@
 package repository
 
 import (
-	"secret-server/app/providers/database"
 	"secret-server/app/crerrors"
+	"secret-server/app/providers/database"
 	"secret-server/app/utils"
 	"strings"
 
@@ -37,7 +37,6 @@ func (*baseRepo) Create(ctx *gin.Context, model interface{}) crerrors.IError {
 func (*baseRepo) Update(ctx *gin.Context, model interface{}, values map[string]interface{}) crerrors.IError {
 	var err error
 	table := utils.GetTypeName(model)
-
 	// If the model is empty, it'll end up updating the whole table.
 	if utils.IsEmpty(model) {
 		err = utils.GetError("Empty model reference while update")

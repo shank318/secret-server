@@ -4,6 +4,8 @@ const (
 	// Bad Request
 	BadRequestErrorCode     = "BAD_REQUEST_ERROR"
 	InternalServerErrorCode = "INTERNAL_SERVER_ERROR"
+	SecretExpired ="SECRET_EXPIRED"
+	SecretLimitReached = "SECRET_VIEW_LIMIT_REACHED"
 	CodeNotFound            = "NOT_FOUND"
 
 	// CodeBadRequest : ...

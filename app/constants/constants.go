@@ -73,9 +73,9 @@ const (
 	// Code: key to hold the status code
 	Code = "code"
 
-	// TerminalRouting: Constant to represent terminal routing endpoint
-	TerminalRouting = "TerminalRouting"
+	CreateSecret = "add_secret"
+	GetSecret = "get_secret"
 )
 
 // PerformanceMetricsActions: List of actions which need performance metrics
-var PerformanceMetricsActions = []string{TerminalRouting}
+var PerformanceMetricsActions = []string{CreateSecret,GetSecret}
