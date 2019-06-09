@@ -18,6 +18,6 @@ go run main.go
 
 ## API Docs
 
-Swagger --> https://secretserverapi.herokuapp.com/swagger/index.html#/
+Swagger --> https://secretserverapi.appspot.com/swagger/index.html#/
 
 The app is deployed on Heroku which is considerably slow most of the time. Please run the code locally to check the api's. Also, the mysql database I am using is a free tier Heroku database which allows only 10 connections at a time. 
