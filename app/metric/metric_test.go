@@ -15,5 +15,5 @@ func TestRegisterPrometheusMetrics(t *testing.T) {
 	}
 
 	RegisterPrometheusMetrics()
-	assert.Equal(t, 4, registerCount)
+	assert.Equal(t, 3, registerCount)
 }

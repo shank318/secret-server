@@ -27,7 +27,7 @@ func TestAppController_Welcome(t *testing.T) {
 	resp := make(map[string]interface{})
 	json.Unmarshal([]byte(w.Body.String()), &resp)
 	assert.Equal(t, http.StatusOK, w.Code)
-	assert.Equal(t, "Welcome to Router :)", resp["Message"])
+	assert.Equal(t, "Welcome to Secret server :)", resp["Message"])
 }
 
 func TestStatusController_Ping(t *testing.T) {
